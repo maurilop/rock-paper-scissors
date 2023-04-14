@@ -13,7 +13,7 @@ function getComputerChoice() {
 
 let computerChoice = getComputerChoice();
 
-function game(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   if (playerSelection === "rock" && computerSelection == "paper") {
     console.log("You lose! Paper beats Rock");
   } else if (playerSelection === "rock" && computerSelection == "scissors") {
@@ -45,4 +45,4 @@ let playerChoice = prompt("What's your move, bitch?").toLowerCase();
 console.log("Player choice: " + playerChoice);
 console.log("Computer choice: " + computerChoice);
 
-game(playerChoice, computerChoice);
+playRound(playerChoice, computerChoice);
