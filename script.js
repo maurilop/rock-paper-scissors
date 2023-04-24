@@ -1,14 +1,16 @@
 function getComputerChoice() {
-  let computerChoice;
   let randomNum = Math.random();
   if (randomNum <= 0.3) {
-    computerChoice = "rock";
+    return "rock";
   } else if (randomNum > 0.3 && randomNum <= 0.6) {
-    computerChoice = "paper";
+    return "paper";
   } else {
-    computerChoice = "scissors";
+    return "scissors";
   }
-  return computerChoice;
+}
+
+function getPlayerChoice() {
+  return prompt("What's your move, bitch?").toLowerCase();
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -35,15 +37,34 @@ function playRound(playerSelection, computerSelection) {
   ) {
     roundResult = "It's a tie! Both choose Scissors";
   } else {
-    roundResult = "Stop breaking the game dude!";
+    roundResult = "Stop trying to break the game dude!";
   }
   return roundResult;
 }
 
-let computerChoice = getComputerChoice();
-let playerChoice = prompt("What's your move, bitch?").toLowerCase();
+function game() {
+  let computerScore = 0;
+  let playerScore = 0;
+  let roundResult;
 
-console.log("Player choice: " + playerChoice);
-console.log("Computer choice: " + computerChoice);
+  for (i = 0; i < 5; i++) {
+    roundResult = playRound(getPlayerChoice(), getComputerChoice());
+    console.log(roundResult);
+    if (roundResult.includes("win") == true) {
+      playerScore++;
+    } else if (roundResult.includes("lose") == true) {
+      computerScore++;
+    }
+    console.log(
+      `Round ${i + 1} -> Computer: ${computerScore}, Player: ${playerScore}`
+    );
+  }
 
-console.log(playRound(playerChoice, computerChoice));
+  if (playerScore > computerScore) {
+    console.log("You won, bitch!");
+  } else if (computerScore > playerScore) {
+    console.log("You lost, sucker!");
+  } else {
+    console.log("You tied, what a waste of time...");
+  }
+}
