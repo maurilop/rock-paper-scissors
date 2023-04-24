@@ -47,24 +47,26 @@ function game() {
   let playerScore = 0;
   let roundResult;
 
-  for (i = 0; i < 5; i++) {
+  while (computerScore < 5 && playerScore < 5) {
+    let i = 0;
     roundResult = playRound(getPlayerChoice(), getComputerChoice());
     console.log(roundResult);
     if (roundResult.includes("win") == true) {
       playerScore++;
+      i++;
     } else if (roundResult.includes("lose") == true) {
       computerScore++;
+      i++;
     }
     console.log(
       `Round ${i + 1} -> Computer: ${computerScore}, Player: ${playerScore}`
     );
+    console.log(computerScore, playerScore);
   }
 
-  if (playerScore > computerScore) {
+  if (playerScore === 5) {
     console.log("You won, bitch!");
-  } else if (computerScore > playerScore) {
+  } else if (computerScore === 5) {
     console.log("You lost, sucker!");
-  } else {
-    console.log("You tied, what a waste of time...");
   }
 }
